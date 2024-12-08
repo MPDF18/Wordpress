@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+	PATH = "$PATH:/usr/share/maven"	
+    }
 
     stages {
         stage('Checkout') {
@@ -12,20 +15,15 @@ pipeline {
         stage('Build') {
             steps {
                 // Construir el proyecto con Maven
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube') { // "SonarQube" debe coincidir con el nombre configurado en Jenkins
-                        sh '''
-                            mvn sonar:sonar \
-                                -Dsonar.projectKey=myproject \
-                                -Dsonar.host.url=${SONAR_HOST_URL} \
-                                -Dsonar.sources=wp-content,wp-admin,wp-includes
-                        '''
+                    withSonarQubeEnv('sonar-v24.12.0') { // "SonarQube" debe coincidir con el nombre configurado en Jenkins
+                        sh 'mvn sonar:sonar'
                     }
                 }
             }
