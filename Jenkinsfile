@@ -24,7 +24,7 @@ pipeline {
                 script {
                     // Realiza el análisis de SonarQube
                     withSonarQubeEnv('SonarQube') {
-                        sh 'mvn sonar:sonar -Dsonar.projectKey=myproject -Dsonar.sources=src'  // Ajusta los parámetros según sea necesario
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=myproject -Dsonar.sources=wp-content,wp-admin,wp-includes'
                     }
                 }
             }
