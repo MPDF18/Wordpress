@@ -23,7 +23,11 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('sonar-v24.12.0') { // "SonarQube" debe coincidir con el nombre configurado en Jenkins
-                        sh 'mvn sonar:sonar'
+                        sh 'mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=sonar-1 \
+  -Dsonar.projectName='sonar-1' \
+  -Dsonar.host.url=http://192.168.11.134:9000 \
+  -Dsonar.token=sqp_5afc4ea1120a1c9c1e1734f2612326edd89781fa'
                     }
                 }
             }
