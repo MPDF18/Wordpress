@@ -7,14 +7,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clonar el repositorio desde GitHub
                 git 'https://github.com/MPDF18/Wordpress.git'
             }
         }
 
         stage('Build') {
             steps {
-                // Construir el proyecto con Maven
                 sh 'mvn clean package'
             }
         }
@@ -22,7 +20,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('sonar-v24.12.0') { // "SonarQube" debe coincidir con el nombre configurado en Jenkins
+                    withSonarQubeEnv('sonar-v24.12.0') {
                         sh 'mvn clean verify sonar:sonar \
   -Dsonar.projectKey=sonar-1 \
   -Dsonar.projectName='sonar-1' \
