@@ -34,7 +34,6 @@ pipeline {
 
     post {
         always {
-            // Limpieza o notificaciones al finalizar el pipeline
             echo 'Pipeline finished'
         }
     }
