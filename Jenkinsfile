@@ -22,10 +22,10 @@ pipeline {
                 script {
                     withSonarQubeEnv('sonar-v24.12.0') {
                         sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=sonar1 \
-  -Dsonar.projectName='sonar' \
+  -Dsonar.projectKey=sonar-1 \
+  -Dsonar.projectName='sonar-1' \
   -Dsonar.host.url=http://192.168.11.134:9000 \
-  -Dsonar.token=sqp_ebaa5ddef59a272c6b84fd048a70aef41c918121'
+  -Dsonar.token=sqp_5afc4ea1120a1c9c1e1734f2612326edd89781fa'
                     }
                 }
             }
